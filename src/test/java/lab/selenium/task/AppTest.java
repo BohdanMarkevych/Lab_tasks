@@ -33,7 +33,7 @@ public class AppTest {
         List<WebElement> imageTab = driver.findElements(xpath("//div[@id=\"iur\"]//img[@style]"));
         TakesScreenshot scrShot = ((TakesScreenshot) driver);
         File srcFile = scrShot.getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(srcFile, new File("src/main/screenshots/test1Screenshot.png"));
+        FileUtils.copyFile(srcFile, new File("src/test/screenshots/test1Screenshot.png"));
         for (WebElement webElement : imageTab) {
             System.out.println(webElement.getAttribute("src"));
             assertTrue(webElement.getAttribute("src").contains("image"));
@@ -56,7 +56,7 @@ public class AppTest {
         System.out.println(firstImage.getAttribute("style"));
         TakesScreenshot scrShot = ((TakesScreenshot) driver);
         File srcFile = scrShot.getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(srcFile, new File("src/main/screenshots/test2Screenshot.png"));
+        FileUtils.copyFile(srcFile, new File("src/test/screenshots/test2Screenshot.png"));
         assertFalse(firstImage.getAttribute("style").isEmpty());
     }
 }
