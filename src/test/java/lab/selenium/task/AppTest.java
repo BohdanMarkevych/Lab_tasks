@@ -33,7 +33,7 @@ public class AppTest {
         List<WebElement> imageTab = driver.findElements(xpath("//div[@id=\"iur\"]//img[@style]"));
         TakesScreenshot scrShot = ((TakesScreenshot) driver);
         File srcFile = scrShot.getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(srcFile, new File("src/test/screenshots/test1Screenshot.png"));
+        FileUtils.copyFile(srcFile, new File("src/test/screenshots/testScreenshot.png"));
         for (WebElement webElement : imageTab) {
             System.out.println(webElement.getAttribute("src"));
             assertTrue(webElement.getAttribute("src").contains("image"));
@@ -41,24 +41,6 @@ public class AppTest {
         driver.quit();
     }
 
-    @Test
-    public void VerifyThatImageTabContainsImages2() throws IOException {
-
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.get("https://www.google.com/");
-        driver.findElement(By.name("q")).sendKeys("Glasses" + Keys.ENTER);
-        driver.manage().timeouts().getPageLoadTimeout();
-        WebElement firstImage = wait.until(presenceOfElementLocated(By.cssSelector("div > img")));
-        System.out.println(firstImage.getAttribute("style"));
-        TakesScreenshot scrShot = ((TakesScreenshot) driver);
-        File srcFile = scrShot.getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(srcFile, new File("src/test/screenshots/test2Screenshot.png"));
-        assertFalse(firstImage.getAttribute("style").isEmpty());
-    }
 }
 
 
